@@ -32,5 +32,13 @@
   },
   "assets": [
     "./src/assets/fonts/Inter/"
+  ],
+  "plugins": [
+    "expo-build-properties",
+    {
+      "android": {
+        "usesCleartextTraffic":true
+      }
+    }
   ]
 }

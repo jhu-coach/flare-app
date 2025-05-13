@@ -15,6 +15,7 @@ import { onStateHydrated } from '@redux/persist'
 import { ExperimentContainer } from 'containers/ExperimentContainer'
 import { AlertProvider } from '@utils/AlertProvider'
 import { registerNotifications } from '@utils/notifications'
+import { persistStore } from 'redux-persist'
 
 // Link with Sentry
 Sentry.init({
@@ -43,6 +44,7 @@ export default function App() {
   const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
+    persistStore(store).purge()
     // Start AppState listening...
     onStateHydrated().then(() => {
       AppStateMonitor.startMonitoring()
@@ -50,7 +52,7 @@ export default function App() {
 
     // Show screens when cache loaded
     AssetCache.construct().then(() => setLoaded(true))
-  })
+  }, [])
 
   if (!fontsLoaded) {
     return null

@@ -278,9 +278,11 @@ async function loginWithID(participantID: string, dispatch) {
       if (url == null) {
         return null
       }
-
+        console.log(BASE_MEDIA_URL)
+        console.log(url)
+        const fullUrl = url.startsWith('https') ? url : (Config.BASE_MEDIA_URL ?? '') + url
       return {
-        uri: await AssetCache.cacheFile((Config.BASE_MEDIA_URL ?? '') + url),
+        uri: await AssetCache.cacheFile(url)
       }
     }
 
@@ -363,6 +365,7 @@ async function loginWithID(participantID: string, dispatch) {
         }),
       )
     })
+
 
     // Save experiment to redux
     dispatch(
