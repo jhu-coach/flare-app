@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { Audio, InterruptionModeIOS, InterruptionModeAndroid } from 'expo-av'
-import * as Sentry from '@sentry/react-native'
 import { experimentSelector } from '@redux/selectors'
 import AudioSensor from './AudioSensor'
 import { Alert } from 'react-native'
@@ -115,7 +114,7 @@ export const useUnconditionalStimulus = ():
           })
         } catch (err) {
           // Record error
-          Sentry.captureMessage(err)
+          // Sentry.captureMessage(err)
           reject(err)
 
           // Return invalid sound object
@@ -132,7 +131,7 @@ export const useUnconditionalStimulus = ():
 
     // Report errors if sound provided bad config
     if (volume == null || volume == 0) {
-      Sentry.captureMessage('Invalid volume parameter used by trial.')
+      // Sentry.captureMessage('Invalid volume parameter used by trial.')
     }
 
     // Create Audio Refernece

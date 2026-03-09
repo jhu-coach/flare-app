@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux'
 import Spinner from 'react-native-spinkit'
 import camelcaseKeys from 'camelcase-keys'
 import Constants from 'expo-constants'
-import * as Sentry from '@sentry/react-native'
 import { shuffle } from 'lodash'
 
 import { Experiment } from '@containers/ExperimentContainer'
@@ -15,6 +14,9 @@ import { setExperiment, updateModule, clearAllModules } from '@redux/reducers'
 import { useAlert } from '@utils/AlertProvider'
 import AssetCache from '@utils/AssetCache'
 import Config from '@utils/Config'
+
+import { useEffect } from 'react'
+import { Audio } from 'expo-av'
 
 const dimensions = Dimensions.get('screen')
 enum Stages {
@@ -268,7 +270,7 @@ async function loginWithID(participantID: string, dispatch) {
         return Promise.reject(experimentApiData.participant)
       } else {
         // Record unknown validation issue
-        Sentry.captureMessage(JSON.stringify(experimentApiData))
+        // Sentry.captureMessage(JSON.stringify(experimentApiData))
         return Promise.reject('An unknown error occured, Please try again.')
       }
     }
@@ -280,7 +282,6 @@ async function loginWithID(participantID: string, dispatch) {
       }
         console.log(BASE_MEDIA_URL)
         console.log(url)
-        const fullUrl = url.startsWith('https') ? url : (Config.BASE_MEDIA_URL ?? '') + url
       return {
         uri: await AssetCache.cacheFile(url)
       }
@@ -348,7 +349,7 @@ async function loginWithID(participantID: string, dispatch) {
     }
 
     // Save the experiment object to Sentry
-    Sentry.setContext('experiment', experiment)
+    // Sentry.setContext('experiment', experiment)
 
     // Save modules to redux
     dispatch(clearAllModules())
@@ -381,7 +382,7 @@ async function loginWithID(participantID: string, dispatch) {
     )
   } catch (err) {
     console.error(err)
-    Sentry.captureException(err)
+    // Sentry.captureException(err)
     return Promise.reject('An unknown error occured, Please try again.')
   }
 }

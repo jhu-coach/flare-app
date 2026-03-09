@@ -2,13 +2,12 @@ import { useEffect, useState } from 'react'
 import { StatusBar, View, LogBox } from 'react-native'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
-import * as Sentry from '@sentry/react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { useFonts } from 'expo-font'
 
 import AssetCache from '@utils/AssetCache'
 import AppStateMonitor from '@utils/AppStateMonitor'
-import Config from '@utils/Config'
+// import Config from '@utils/Config'
 import { FlareThemeProvider, palette } from '@utils/theme'
 import { store, peristor } from '@redux/store'
 import { onStateHydrated } from '@redux/persist'
@@ -18,10 +17,10 @@ import { registerNotifications } from '@utils/notifications'
 import { persistStore } from 'redux-persist'
 
 // Link with Sentry
-Sentry.init({
-  dsn: Config.SENTRY_DTN,
-  enableAutoSessionTracking: true,
-})
+// Sentry.init({
+//   dsn: Config.SENTRY_DTN,
+//   enableAutoSessionTracking: true,
+// })
 
 // Activate Notifications
 registerNotifications()

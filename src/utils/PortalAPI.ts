@@ -1,5 +1,5 @@
 import isEqual from 'lodash/isEqual'
-import * as Sentry from '@sentry/react-native'
+// import * as Sentry from '@sentry/react-native'
 
 import Config from '@utils/Config'
 
@@ -50,16 +50,16 @@ export class PortalAPI {
     }
 
     // Report issue via Sentry
-    const errMessage = 'Portal API sync validation issue'
-    Sentry.captureMessage(errMessage, {
-      contexts: {
-        request: {
-          url: rawResponse.url,
-        },
-        response: responseData,
-        submissionData,
-      },
-    })
+    // const errMessage = 'Portal API sync validation issue'
+    // Sentry.captureMessage(errMessage, {
+    //   contexts: {
+    //     request: {
+    //       url: rawResponse.url,
+    //     },
+    //     response: responseData,
+    //     submissionData,
+    //   },
+    // })
 
     // Raise error to stop module sync flag being incorrect
     console.error(JSON.stringify(responseData))

@@ -60,6 +60,7 @@ export default class AssetCache {
    * @param url URL for the remote file you want to cache
    */
   static async cacheFile(url: string): Promise<string | null> {
+    AssetCache.fileMap = {}
     try {
       // Check valid URL
       if (url == null) {

@@ -14,7 +14,10 @@ import {
 import { ThemeColors } from './theme'
 
 const createAlertRef = (dispatch, alert): AlertRef => ({
-  dismiss: () => dispatch(dismissAlert(alert.id)),
+  dismiss: () => {
+    if (!alert?.id) return
+    dispatch(dismissAlert(alert.id))
+  },
 })
 
 const createToastRef = (dispatch, toast): ToastRef => ({
