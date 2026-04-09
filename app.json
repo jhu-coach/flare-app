@@ -10,7 +10,7 @@
       "ios",
       "android"
     ],
-    "icon": "./assets/app-icon-1024.png",
+    "icon": "./assets/app-icon-1024-coach.png",
     "splash": {
       "backgroundColor": "#ffffff",
       "resizeMode": "contain",
